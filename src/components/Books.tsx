@@ -1,11 +1,17 @@
 import React from 'react'
+import MainTable from './MainTable'
+import type { Book } from '../types/Book'
 
-const Books: React.FC = () => {
-    
+type BooksProps = {
+    allBooks: Book[]
+}
+
+const Books: React.FC<BooksProps> = ({allBooks}) => {
+
 
     return(
     <div>
-        <p>Books here ____</p>
+        <MainTable allBooks={allBooks}/>
     </div>)
 }
 
