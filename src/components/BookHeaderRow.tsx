@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Book } from '../types/Book';
+import { BookColumns, type Book } from '../types/Book';
 
 type BookHeaderRowProps = {
     sortBy: string;
@@ -7,15 +7,6 @@ type BookHeaderRowProps = {
     isAscending: boolean;
     setIsAscending: (a: boolean) => void;
 };
-
-const BookKeys = [
-    {key: 'title', label: 'Title'},
-    {key: 'author', label: 'Author'},
-    {key: 'isbn', label: 'ISBN'},
-    {key: 'edition', label: 'Edition'},
-    {key: 'publisher', label: 'Publisher'},
-    {key: 'copies', label: 'Copies'}
-] as const
 
 const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending }) => {
     const onHeaderClick = (key: keyof Book) => {
@@ -29,7 +20,7 @@ const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAsce
 
     return (
         <div className="table-header">
-            {BookKeys.map(({ key, label }) => {
+            {BookColumns.map(({ key, label }) => {
                 const isSelected = sortBy === key;
                 const defaultArrow = '▼';
                 const arrow = isAscending ? '▲' : '▼';
