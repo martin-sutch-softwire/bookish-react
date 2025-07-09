@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookColumns, type Book } from '../types/Book';
+import InnerTable from './InnerTable';
 import EditBookModal from './EditBookModal';
 
 type BookRowProps = {
@@ -31,6 +32,7 @@ const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) 
               )
           )}
       </div>
+      {selectedRow === book.bookID ? <InnerTable copies={book.copies} /> : null}
     </>
   );
 };
