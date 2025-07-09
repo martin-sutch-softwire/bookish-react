@@ -1,24 +1,14 @@
 import React from 'react';
-import type { Book } from '../types/Book';
+import { BookColumns, type Book } from '../types/Book';
 
 type BookHeaderRowProps = {
-    sortBy: string;
+    sortBy: keyof Book;
     setSortBy: (s: keyof Book) => void;
-    isAscending : boolean;
+    isAscending: boolean;
     setIsAscending: (a: boolean) => void;
 };
 
-const BookKeys = [
-    {key: 'title', label: 'Title'},
-    {key: 'author', label: 'Author'},
-    {key: 'isbn', label: 'ISBN'},
-    {key: 'edition', label: 'Edition'},
-    {key: 'publisher', label: 'Publisher'},
-    {key: 'copies', label: 'Copies'}
-] as const
-
 const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending }) => {
-    
     const onHeaderClick = (key: keyof Book) => {
         if (sortBy === key) {
             setIsAscending(!isAscending);
@@ -26,19 +16,23 @@ const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAsce
             setSortBy(key);
             setIsAscending(true);
         }
-    }
+    };
 
     return (
         <div className="table-header">
-            {BookKeys.map(({key,label}) => {
+            {BookColumns.map(({ key, label, isButton }) => {
                 const isSelected = sortBy === key;
                 const defaultArrow = '▼';
                 const arrow = isAscending ? '▲' : '▼';
                 const arrowColour = isSelected ? 'black' : 'gray';
-                return (<span key={key} onClick={() => onHeaderClick(key)} style={{userSelect:'none', cursor:'pointer'}}>
-                    {label}
-                    <span style={{color: arrowColour}}>{isSelected ? arrow : defaultArrow}</span>
-                    </span>)
+                return isButton ? (
+                    <span></span>
+                ) : (
+                    <span key={key} onClick={() => onHeaderClick(key)} style={{ userSelect: 'none', cursor: 'pointer' }}>
+                        {label}
+                        <span style={{ color: arrowColour }}>{isSelected ? arrow : defaultArrow}</span>
+                    </span>
+                );
             })}
         </div>
     );
