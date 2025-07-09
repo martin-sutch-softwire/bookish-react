@@ -2,7 +2,7 @@ import React from 'react';
 import { BookColumns, type Book } from '../types/Book';
 
 type BookHeaderRowProps = {
-    sortBy: string;
+    sortBy: keyof Book;
     setSortBy: (s: keyof Book) => void;
     isAscending: boolean;
     setIsAscending: (a: boolean) => void;

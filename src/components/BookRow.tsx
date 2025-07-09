@@ -10,31 +10,31 @@ type BookRowProps = {
 };
 
 const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) => {
-  const [showEditBookModal, setShowEditBookModal] = useState(false);
-  return (
-    <>
-      {showEditBookModal ? (<EditBookModal setShowEditBookModal={setShowEditBookModal}/>) : null}
-      <div className="table" onClick={() => (selectedRow === book.bookID ? setSelectedRow(null) : setSelectedRow(book.bookID))}>
-          {BookColumns.map((column) =>
-              column.isButton ? (
-                  <button
-                      key={column.key}
-                      onClick={(e) => {
-                          e.stopPropagation();
-                          // column.button.action(book);
-                          setShowEditBookModal(true);
-                      }}
-                  >
-                      {column.button.label}
-                  </button>
-              ) : (
-                  <span key={column.key}>{column.content(book)}</span>
-              )
-          )}
-      </div>
-      {selectedRow === book.bookID ? <InnerTable copies={book.copies} /> : null}
-    </>
-  );
+    const [showEditBookModal, setShowEditBookModal] = useState(false);
+    return (
+        <>
+        {showEditBookModal ? (<EditBookModal setShowEditBookModal={setShowEditBookModal}/>) : null}
+            <div className="table" onClick={() => (selectedRow === book.bookID ? setSelectedRow(null) : setSelectedRow(book.bookID))}>
+                {BookColumns.map((column) =>
+                    column.isButton ? (
+                        <button
+                            key={column.key}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                //column.button.action(book);
+                                setShowEditBookModal(true);
+                            }}
+                        >
+                            {column.button.label}
+                        </button>
+                    ) : (
+                        <span key={column.key}>{column.content(book)}</span>
+                    )
+                )}
+            </div>
+            {selectedRow === book.bookID ? <InnerTable copies={book.copies} /> : null}
+        </>
+    );
 };
 
 export default BookRow;
