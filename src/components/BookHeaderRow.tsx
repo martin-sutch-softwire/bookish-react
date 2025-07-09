@@ -20,12 +20,14 @@ const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAsce
 
     return (
         <div className="table-header">
-            {BookColumns.map(({ key, label }) => {
+            {BookColumns.map(({ key, label, isButton }) => {
                 const isSelected = sortBy === key;
                 const defaultArrow = '▼';
                 const arrow = isAscending ? '▲' : '▼';
                 const arrowColour = isSelected ? 'black' : 'gray';
-                return (
+                return isButton ? (
+                    <span></span>
+                ) : (
                     <span key={key} onClick={() => onHeaderClick(key)} style={{ userSelect: 'none', cursor: 'pointer' }}>
                         {label}
                         <span style={{ color: arrowColour }}>{isSelected ? arrow : defaultArrow}</span>

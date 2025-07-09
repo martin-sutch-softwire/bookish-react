@@ -21,28 +21,48 @@ export const BookColumns = [
     {
         key: 'author',
         label: 'Author',
-        content: (book: Book) => book.author
+        content: (book: Book) => book.author,
+        button: {},
+        isButton: false
     },
     {
         key: 'isbn',
         label: 'ISBN',
-        content: (book: Book) => book.isbn
+        content: (book: Book) => book.isbn,
+        button: {},
+        isButton: false
     },
     {
         key: 'edition',
         label: 'Edition',
-        content: (book: Book) => book.edition
+        content: (book: Book) => book.edition,
+        button: {},
+        isButton: false
     },
     {
         key: 'publisher',
         label: 'Publisher',
-        content: (book: Book) => book.publisher
+        content: (book: Book) => book.publisher,
+        button: {},
+        isButton: false
     },
     {
         key: 'copies',
         label: 'Copies',
         content: (book: Book) => {
             return `${book.copies.filter((copy) => copy.memberID === null).length}/${book.copies.length}`;
-        }
+        },
+        button: {},
+        isButton: false
+    },
+    {
+        key: 'title',
+        label: '',
+        content: () => null,
+        button: {
+            label: 'Edit',
+            action: (book: Book) => console.log(`Now opening popup with bookID of: ${book.bookID}`)
+        },
+        isButton: true
     }
 ] as const;

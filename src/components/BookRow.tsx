@@ -5,12 +5,24 @@ type BookRowProps = {
   book: Book;
 };
 
-const BookRow: React.FC<BookRowProps> = ({ book }) => {
+const BookRow: React.FC<BookRowProps> = ({ book}) => {
   return (
-    <div className="table">
-      {BookColumns.map((column) =>
-        <span key={column.key}>{column.content(book)}</span>
-      )}
+    <div className="table" >
+        {BookColumns.map((column) =>
+            column.isButton ? (
+                <button
+                    key={column.key}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        // column.button.action(book);
+                    }}
+                >
+                    {column.button.label}
+                </button>
+            ) : (
+                <span key={column.key}>{column.content(book)}</span>
+            )
+        )}
     </div>
   );
 };

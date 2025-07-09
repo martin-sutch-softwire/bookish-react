@@ -43,7 +43,7 @@
 
 .table {
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr 1fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr 1fr 2fr 1fr 1fr;
     gap: 10pt;
     text-align: left;
 }
@@ -54,7 +54,7 @@
 
 .table-header {
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr 1fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr 1fr 2fr 1fr 1fr;
     gap: 10pt;
     text-align: left;
     background-color: #e0e0e0;
