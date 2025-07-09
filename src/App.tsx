@@ -21,6 +21,7 @@ function App() {
     }, []);
     return (
         <div>
+            {/* <EditBookModal setShowEditBookModal={setShowEditBookModal} /> */}
             <NavBar />
             <Routes>
                 <Route path="/books" element={<Books allBooks={allBooks} />} />
