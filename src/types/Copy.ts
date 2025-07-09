@@ -3,5 +3,6 @@ export type Copy = {
     bookID: number;
     status: string;
     memberID: number;
-    dueBack: string
+    dueBack: string;
+    memberName: string
 }
