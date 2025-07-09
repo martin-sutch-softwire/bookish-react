@@ -13,8 +13,10 @@ const MainTable: React.FC<BooksProps> = ({ allBooks }) => {
     const [filteredBooks, setFilteredBooks] = useState(allBooks);
     const [sortBy, setSortBy] = useState<keyof Book>('title');
     const [isAscending, setisAscending] = useState(true);
+    const [selectedRow, setSelectedRow] = useState<number | null>(null);
 
     useEffect(() => {
+        setSelectedRow(null);
         setFilteredBooks(
             allBooks
                 .filter((book) => book.title.includes(query) || book.author.includes(query) || book.isbn.includes(query) || book.edition.includes(query) || book.publisher.includes(query))
@@ -33,7 +35,7 @@ const MainTable: React.FC<BooksProps> = ({ allBooks }) => {
             <SearchBar query={query} setQuery={setQuery} />
             <BookHeaderRow sortBy={sortBy} setSortBy={setSortBy} isAscending={isAscending} setIsAscending={setisAscending} />
             {filteredBooks.map((book) => (
-                <BookRow key={book.bookID} book={book} />
+                <BookRow key={book.bookID} book={book} selectedRow={selectedRow} setSelectedRow={setSelectedRow} />
             ))}
         </div>
     );

@@ -3,15 +3,17 @@ import { BookColumns, type Book } from '../types/Book';
 import EditBookModal from './EditBookModal';
 
 type BookRowProps = {
-  book: Book;
+    book: Book;
+    selectedRow: number | null;
+    setSelectedRow: (r: number | null) => void;
 };
 
-const BookRow: React.FC<BookRowProps> = ({ book}) => {
+const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) => {
   const [showEditBookModal, setShowEditBookModal] = useState(false);
   return (
     <>
       {showEditBookModal ? (<EditBookModal setShowEditBookModal={setShowEditBookModal}/>) : null}
-      <div className="table" >
+      <div className="table" onClick={() => (selectedRow === book.bookID ? setSelectedRow(null) : setSelectedRow(book.bookID))}>
           {BookColumns.map((column) =>
               column.isButton ? (
                   <button
