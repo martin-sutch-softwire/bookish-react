@@ -8,7 +8,6 @@ import Books from './components/Books';
 import Users from './components/Users';
 import Checkout from './components/Checkout';
 import type { Book } from './types/Book';
-import EditBookModal from './components/EditBookModal';
 
 function App() {
     const [allBooks, setAllBooks] = useState<Book[]>([]);
@@ -22,7 +21,7 @@ function App() {
     }, []);
     return (
         <div>
-            <EditBookModal />
+            {/* <EditBookModal setShowEditBookModal={setShowEditBookModal} /> */}
             <NavBar />
             <Routes>
                 <Route path="/books" element={<Books allBooks={allBooks} />} />

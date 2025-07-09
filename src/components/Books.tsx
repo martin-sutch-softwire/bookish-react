@@ -11,7 +11,7 @@ const Books: React.FC<BooksProps> = ({allBooks}) => {
 
     return(
     <div>
-        <MainTable allBooks={allBooks}/>
+        <MainTable allBooks={allBooks} />
     </div>)
 }
 
