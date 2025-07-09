@@ -4,5 +4,6 @@ export type Copy = {
     status: string;
     memberID: number;
     dueBack: string;
-    memberName: string
-}
+    memberName: string;
+};
+

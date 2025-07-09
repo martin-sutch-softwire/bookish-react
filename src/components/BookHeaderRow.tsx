@@ -4,7 +4,7 @@ import type { Book } from '../types/Book';
 type BookHeaderRowProps = {
     sortBy: string;
     setSortBy: (s: keyof Book) => void;
-    isAscending : boolean;
+    isAscending: boolean;
     setIsAscending: (a: boolean) => void;
 };
 
@@ -18,7 +18,6 @@ const BookKeys = [
 ] as const
 
 const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending }) => {
-    
     const onHeaderClick = (key: keyof Book) => {
         if (sortBy === key) {
             setIsAscending(!isAscending);
@@ -26,19 +25,21 @@ const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAsce
             setSortBy(key);
             setIsAscending(true);
         }
-    }
+    };
 
     return (
         <div className="table-header">
-            {BookKeys.map(({key,label}) => {
+            {BookKeys.map(({ key, label }) => {
                 const isSelected = sortBy === key;
                 const defaultArrow = '▼';
                 const arrow = isAscending ? '▲' : '▼';
                 const arrowColour = isSelected ? 'black' : 'gray';
-                return (<span key={key} onClick={() => onHeaderClick(key)} style={{userSelect:'none', cursor:'pointer'}}>
-                    {label}
-                    <span style={{color: arrowColour}}>{isSelected ? arrow : defaultArrow}</span>
-                    </span>)
+                return (
+                    <span key={key} onClick={() => onHeaderClick(key)} style={{ userSelect: 'none', cursor: 'pointer' }}>
+                        {label}
+                        <span style={{ color: arrowColour }}>{isSelected ? arrow : defaultArrow}</span>
+                    </span>
+                );
             })}
         </div>
     );

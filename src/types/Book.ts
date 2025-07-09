@@ -1,4 +1,4 @@
-import type { Copy } from "./Copy";
+import type { Copy } from './Copy';
 
 export type Book = {
     bookID: number;
@@ -8,4 +8,5 @@ export type Book = {
     edition: string;
     publisher: string;
     copies: Copy[];
-}
+};
+

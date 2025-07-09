@@ -15,24 +15,18 @@ const MainTable: React.FC<BooksProps> = ({ allBooks }) => {
     const [isAscending, setisAscending] = useState(true);
 
     useEffect(() => {
-        setFilteredBooks(allBooks.filter((book) => 
-            book.title.includes(query) || 
-        book.author.includes(query) || 
-        book.isbn.includes(query) || 
-        book.edition.includes(query) || 
-        book.publisher.includes(query))
-    .sort((a,b) => {
-        const fieldA = a[sortBy];
-        const fieldB = b[sortBy];
-        if (fieldA < fieldB) {
-            return isAscending ? -1 : 1;
-        } else if (fieldA > fieldB) {
-            return isAscending? 1 : -1;
-        } else {
-            return 0;
-        }
-    }));
-    }, [query,sortBy,isAscending,allBooks]);
+        setFilteredBooks(
+            allBooks
+                .filter((book) => book.title.includes(query) || book.author.includes(query) || book.isbn.includes(query) || book.edition.includes(query) || book.publisher.includes(query))
+                .sort((a, b) => {
+                    const fieldA = a[sortBy];
+                    const fieldB = b[sortBy];
+                    if (fieldA < fieldB) return isAscending ? -1 : 1;
+                    if (fieldA > fieldB) return isAscending ? 1 : -1;
+                    return 0;
+                })
+        );
+    }, [query, sortBy, isAscending, allBooks]);
 
     return (
         <div>
