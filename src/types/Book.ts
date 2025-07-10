@@ -1,4 +1,5 @@
 import type { Copy } from './Copy';
+import { ModalVersion } from './Modal';
 
 export type Book = {
     bookID: number;
@@ -56,12 +57,12 @@ export const BookColumns = [
         isButton: false
     },
     {
-        key: 'title',
+        key: 'button',
         label: '',
         content: () => null,
         button: {
             label: 'Edit',
-            action: (book: Book) => console.log(`Now opening popup with bookID of: ${book.bookID}`)
+            action: ModalVersion.EDITBOOK
         },
         isButton: true
     }

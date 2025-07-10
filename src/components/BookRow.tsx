@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BookColumns, type Book } from '../types/Book';
 import InnerTable from './InnerTable';
-import EditBookModal from './EditBookModal';
+import ModalHolder from './ModalHolder';
 
 type BookRowProps = {
     book: Book;
@@ -10,23 +10,23 @@ type BookRowProps = {
 };
 
 const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) => {
-    const [showEditBookModal, setShowEditBookModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     return (
         <>
-        {showEditBookModal ? (<EditBookModal setShowEditBookModal={setShowEditBookModal}/>) : null}
             <div className="table" onClick={() => (selectedRow === book.bookID ? setSelectedRow(null) : setSelectedRow(book.bookID))}>
                 {BookColumns.map((column) =>
                     column.isButton ? (
+                        <div key={column.key}>
+                        {showModal ? (<ModalHolder book={book} setShowModal={setShowModal} modalVersion={column.button.action}/>) : null}
                         <button
-                            key={column.key}
                             onClick={(e) => {
                                 e.stopPropagation();
-                                //column.button.action(book);
-                                setShowEditBookModal(true);
+                                setShowModal(true);
                             }}
                         >
                             {column.button.label}
                         </button>
+                        </div>
                     ) : (
                         <span key={column.key}>{column.content(book)}</span>
                     )
