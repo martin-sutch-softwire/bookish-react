@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import type { Copy } from '../types/Copy';
 import InnerRow from './InnerRow';
 import InnerHeaderRow from './InnerHeaderRow';
+import type { Book } from '../types/Book';
 
 type InnerTableProps = {
+    book: Book;
     copies: Copy[];
 };
 
-const InnerTable: React.FC<InnerTableProps> = ({ copies }) => {
+const InnerTable: React.FC<InnerTableProps> = ({ copies, book }) => {
     const [sortedCopies, setSortedCopies] = useState(copies);
     const [sortBy, setSortBy] = useState<keyof Copy>('copyID');
     const [isAscending, setisAscending] = useState(true);
@@ -28,7 +30,7 @@ const InnerTable: React.FC<InnerTableProps> = ({ copies }) => {
         <div>
             <InnerHeaderRow sortBy={sortBy} setSortBy={setSortBy} isAscending={isAscending} setIsAscending={setisAscending} />
             {sortedCopies.map((copy) => (
-                <InnerRow key={copy.copyID} copy={copy} />
+                <InnerRow key={copy.copyID} copy={copy} book={book} />
             ))}
         </div>
     );

@@ -17,22 +17,22 @@ const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) 
                 {BookColumns.map((column) =>
                     column.isButton ? (
                         <div key={column.key}>
-                        {showModal ? (<ModalHolder book={book} setShowModal={setShowModal} modalVersion={column.button.action}/>) : null}
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setShowModal(true);
-                            }}
-                        >
-                            {column.button.label}
-                        </button>
+                            {showModal ? <ModalHolder book={book} setShowModal={setShowModal} modalVersion={column.button.action} /> : null}
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setShowModal(true);
+                                }}
+                            >
+                                {column.button.label}
+                            </button>
                         </div>
                     ) : (
                         <span key={column.key}>{column.content(book)}</span>
                     )
                 )}
             </div>
-            {selectedRow === book.bookID ? <InnerTable copies={book.copies} /> : null}
+            {selectedRow === book.bookID ? <InnerTable copies={book.copies} book={book} /> : null}
         </>
     );
 };

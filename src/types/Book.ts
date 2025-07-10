@@ -57,7 +57,7 @@ export const BookColumns = [
         isButton: false
     },
     {
-        key: 'button',
+        key: 'editButton',
         label: '',
         content: () => null,
         button: {

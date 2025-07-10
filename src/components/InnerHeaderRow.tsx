@@ -19,13 +19,15 @@ const InnerHeaderRow: React.FC<InnerHeaderRowProps> = ({ sortBy, setSortBy, isAs
     };
 
     return (
-        <div className="table-header">
-            {CopyColumns.map(({ key, label }) => {
+        <div className="inner-table-header">
+            {CopyColumns.map(({ key, label, isButton }) => {
                 const isSelected = sortBy === key;
                 const defaultArrow = '▼';
                 const arrow = isAscending ? '▲' : '▼';
                 const arrowColour = isSelected ? 'black' : 'gray';
-                return (
+                return isButton ? (
+                    <span key={key}></span>
+                ) : (
                     <span key={key} onClick={() => onHeaderClick(key)} style={{ userSelect: 'none', cursor: 'pointer' }}>
                         {label}
                         <span style={{ color: arrowColour }}>{isSelected ? arrow : defaultArrow}</span>

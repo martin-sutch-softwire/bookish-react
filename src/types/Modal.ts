@@ -1,5 +1,6 @@
 export const ModalVersion = {
     EDITBOOK: 'editBook',
     EDITUSER: 'editUser',
-    DELETEUSER: 'deleteUser'
-} as const
+    DELETEUSER: 'deleteUser',
+    DELETECOPY: 'deleteCopy'
+} as const;
