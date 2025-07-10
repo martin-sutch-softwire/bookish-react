@@ -1,14 +1,14 @@
 import React from 'react';
 import { BookColumns, type Book } from '../types/Book';
 
-type BookHeaderRowProps = {
+type MainHeaderRowProps = {
     sortBy: keyof Book;
     setSortBy: (s: keyof Book) => void;
     isAscending: boolean;
     setIsAscending: (a: boolean) => void;
 };
 
-const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending }) => {
+const MainHeaderRow: React.FC<MainHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending }) => {
     const onHeaderClick = (key: keyof Book) => {
         if (sortBy === key) {
             setIsAscending(!isAscending);
@@ -38,4 +38,4 @@ const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAsce
     );
 };
 
-export default BookHeaderRow;
+export default MainHeaderRow;

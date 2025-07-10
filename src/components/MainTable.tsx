@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import type { Book } from '../types/Book';
-import BookRow from './BookRow';
+import MainRow from './MainRow';
 import SearchBar from './SearchBar';
-import BookHeaderRow from './BookHeaderRow';
+import MainHeaderRow from './MainHeaderRow';
 
 type BooksProps = {
     allBooks: Book[];
@@ -33,9 +33,9 @@ const MainTable: React.FC<BooksProps> = ({ allBooks }) => {
     return (
         <div>
             <SearchBar query={query} setQuery={setQuery} />
-            <BookHeaderRow sortBy={sortBy} setSortBy={setSortBy} isAscending={isAscending} setIsAscending={setisAscending} />
+            <MainHeaderRow sortBy={sortBy} setSortBy={setSortBy} isAscending={isAscending} setIsAscending={setisAscending} />
             {filteredBooks.map((book) => (
-                <BookRow key={book.bookID} book={book} selectedRow={selectedRow} setSelectedRow={setSelectedRow} />
+                <MainRow key={book.bookID} book={book} selectedRow={selectedRow} setSelectedRow={setSelectedRow} />
             ))}
         </div>
     );

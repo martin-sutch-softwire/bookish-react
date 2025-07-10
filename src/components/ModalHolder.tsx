@@ -22,7 +22,7 @@ const ModalHolder: React.FC<ModalHolderProps> = ({ book, copy, setShowModal, mod
         >
             <div className="modal-container">
                 <button
-                    onClick={(e) => {
+                    onClick={() => {
                         setShowModal(false);
                     }}
                 >

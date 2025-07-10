@@ -3,13 +3,13 @@ import { BookColumns, type Book } from '../types/Book';
 import InnerTable from './InnerTable';
 import ModalHolder from './ModalHolder';
 
-type BookRowProps = {
+type MainRowProps = {
     book: Book;
     selectedRow: number | null;
     setSelectedRow: (r: number | null) => void;
 };
 
-const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) => {
+const MainRow: React.FC<MainRowProps> = ({ book, selectedRow, setSelectedRow }) => {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
@@ -37,4 +37,4 @@ const BookRow: React.FC<BookRowProps> = ({ book, selectedRow, setSelectedRow }) 
     );
 };
 
-export default BookRow;
+export default MainRow;
