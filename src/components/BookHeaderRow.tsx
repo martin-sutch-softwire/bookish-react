@@ -26,7 +26,7 @@ const BookHeaderRow: React.FC<BookHeaderRowProps> = ({ sortBy, setSortBy, isAsce
                 const arrow = isAscending ? '▲' : '▼';
                 const arrowColour = isSelected ? 'black' : 'gray';
                 return isButton ? (
-                    <span></span>
+                    <span key={key}></span>
                 ) : (
                     <span key={key} onClick={() => onHeaderClick(key)} style={{ userSelect: 'none', cursor: 'pointer' }}>
                         {label}
