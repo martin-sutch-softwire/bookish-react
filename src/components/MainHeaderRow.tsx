@@ -1,15 +1,19 @@
 import React from 'react';
-import { BookColumns, type Book } from '../types/Book';
+import type { Column } from '../types/Column';
 
 type MainHeaderRowProps = {
-    sortBy: keyof Book;
-    setSortBy: (s: keyof Book) => void;
+    sortBy: string;
+    setSortBy: (s: string) => void;
     isAscending: boolean;
     setIsAscending: (a: boolean) => void;
+    columns: Column[];
 };
 
-const MainHeaderRow: React.FC<MainHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending }) => {
-    const onHeaderClick = (key: keyof Book) => {
+const MainHeaderRow: React.FC<MainHeaderRowProps> = ({ sortBy, setSortBy, isAscending, setIsAscending, columns }) => {
+    const ascendingArrow = '▲';
+    const descendingArrow = '▼';
+
+    const onHeaderClick = (key: string) => {
         if (sortBy === key) {
             setIsAscending(!isAscending);
         } else {
@@ -20,17 +24,16 @@ const MainHeaderRow: React.FC<MainHeaderRowProps> = ({ sortBy, setSortBy, isAsce
 
     return (
         <div className="table-header">
-            {BookColumns.map(({ key, label, isButton }) => {
+            {columns.map(({ key, label, isButton }) => {
                 const isSelected = sortBy === key;
-                const defaultArrow = '▼';
-                const arrow = isAscending ? '▲' : '▼';
+                const arrow = isAscending ? ascendingArrow : descendingArrow;
                 const arrowColour = isSelected ? 'black' : 'gray';
                 return isButton ? (
                     <span key={key}></span>
                 ) : (
                     <span key={key} onClick={() => onHeaderClick(key)} style={{ userSelect: 'none', cursor: 'pointer' }}>
                         {label}
-                        <span style={{ color: arrowColour }}>{isSelected ? arrow : defaultArrow}</span>
+                        <span style={{ color: arrowColour }}>{isSelected ? arrow : descendingArrow}</span>
                     </span>
                 );
             })}

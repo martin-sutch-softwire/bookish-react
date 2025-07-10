@@ -4,9 +4,9 @@ import { getAllBooks } from './utils/api';
 import NavBar from './components/NavBar';
 import FooterBar from './components/FooterBar';
 import { Route, Routes } from 'react-router-dom';
-import Books from './components/Books';
-import Users from './components/Users';
-import Checkout from './components/Checkout';
+import PageBooks from './components/PageBooks';
+import PageUsers from './components/PageUsers';
+import PageCheckout from './components/PageCheckout';
 import type { Book } from './types/Book';
 
 function App() {
@@ -21,12 +21,11 @@ function App() {
     }, []);
     return (
         <div>
-            {/* <EditBookModal setShowEditBookModal={setShowEditBookModal} /> */}
             <NavBar />
             <Routes>
-                <Route path="/books" element={<Books allBooks={allBooks} />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/books" element={<PageBooks allBooks={allBooks} />} />
+                <Route path="/users" element={<PageUsers />} />
+                <Route path="/checkout" element={<PageCheckout />} />
             </Routes>
             {errorMessage ? <FooterBar errorMessage={errorMessage} /> : null}
         </div>

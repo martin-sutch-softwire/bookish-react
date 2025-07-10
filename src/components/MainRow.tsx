@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { BookColumns, type Book } from '../types/Book';
+import type { Book } from '../types/Book';
 import InnerTable from './InnerTable';
 import ModalHolder from './ModalHolder';
+import type { Column } from '../types/Column';
 
 type MainRowProps = {
     book: Book;
     selectedRow: number | null;
     setSelectedRow: (r: number | null) => void;
+    columns: Column[];
 };
 
-const MainRow: React.FC<MainRowProps> = ({ book, selectedRow, setSelectedRow }) => {
+const MainRow: React.FC<MainRowProps> = ({ book, selectedRow, setSelectedRow, columns }) => {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
             <div className="table" onClick={() => (selectedRow === book.bookID ? setSelectedRow(null) : setSelectedRow(book.bookID))}>
-                {BookColumns.map((column) =>
+                {columns.map((column) =>
                     column.isButton ? (
                         <div key={column.key}>
                             {showModal ? <ModalHolder book={book} setShowModal={setShowModal} modalVersion={column.button.action} /> : null}
